@@ -1,0 +1,41 @@
+.k-card-head {
+  padding: 1em 32rpx;
+}
+
+.k-card-song-list {
+  padding: 0 32rpx 1em 32rpx;
+}
+
+.song-list-block {
+  padding: 0.5em 0;
+}
+
+.song-list-block-pic {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  background-color: red !important;
+}
+
+.song-list-block-content {
+  /* border-bottom: solid 1rpx red; */
+  position: relative;
+  width: calc(100% - 120rpx);
+  padding: 0 1em 0 0;
+}
+
+/* .song-list-block-content::after {
+  content: " ";
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+  height: 1px;
+  border-top: solid 1px red;
+  color: #d9d9d9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.3);
+  transform: scaleY(0.3);
+  left: 0;
+  z-index: 2;
+} */

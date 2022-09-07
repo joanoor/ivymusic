@@ -1,0 +1,8 @@
+<view>
+  <view class="flex just-content-between">
+    <view>{{item.title}}</view>
+    <!-- <view>更多</view> -->
+    <slot name='right'></slot>
+  </view>
+
+</view>

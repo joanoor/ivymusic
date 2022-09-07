@@ -1,0 +1,22 @@
+<page-meta page-style="{{pageStyle}}"></page-meta>
+<van-toast id="van-toast" />
+<van-nav-bar custom-class="nav-bar" fixed="{{false}}" placeholder title="{{title}}">
+  <van-icon class-prefix="iconfont" name="jiantou" slot="left" size="38rpx" bindtap="$goBack" />
+</van-nav-bar>
+<view class="container" style="height:calc(100vh - {{navbarHeight}}px - {{tabbarHeight}}px - {{playbarHeight}}px);">
+  <!-- 我是内容 -->
+  <!-- <searchPage wx:if="{{comName===''}}" /> -->
+</view>
+
+<view class="bottom-container" style="transform: translateY({{playtabTransY}}px);">
+  <playBar wx:if="{{playbarHeight > 0}}" playbar-height="{{playbarHeight}}" />
+  <view class="tabbar" wx:if="{{false}}">
+    <van-tabbar placeholder fixed="{{false}}" active="{{active}}" bindchange="onTabBarChange" z-index="99999">
+      <van-tabbar-item wx:for="{{tarbarList}}" wx:key="index">
+        <van-icon slot="icon" class-prefix="iconfont" name="{{item.iconfont}}" />
+        <van-icon slot="icon-active" class-prefix="iconfont" name="{{item.iconfont}}" />
+        {{item.text}}
+      </van-tabbar-item>
+    </van-tabbar>
+  </view>
+</view>

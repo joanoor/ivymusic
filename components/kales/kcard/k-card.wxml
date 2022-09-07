@@ -1,0 +1,30 @@
+<view class="custom-class k-card border-box">
+  <view class="k-card-head flex justify-content-between">
+    <view>
+      <slot name="left"></slot>
+    </view>
+    <view>
+      <slot name="right"></slot>
+    </view>
+  </view>
+  <k-scroll wx:if="{{!flag}}" height="{{sheight}}" custom-class="custom-scroll" mr="{{mr}}" lists="{{lists}}">
+  </k-scroll>
+  <view wx:else class="k-card-song-list">
+    <view class="flex justify-content-between song-list-block" wx:for="{{lists}}" wx:key="index" data-item="{{item}}"
+      bindtap="onClickSong">
+      <view class="song-list-block-pic">{{item.pic}}</view>
+      <view class="song-list-block-content weak-line flex justify-content-between align-items-center border-box">
+        <view>
+          <view class="song-list-block-title">{{item.title}}</view>
+          <view class="song-list-block-brief">
+            <van-tag round type="danger">{{item.tag}}</van-tag>
+            <text>{{item.desc}}</text>
+          </view>
+        </view>
+        <view>
+          <van-icon name="play-circle-o" size="60rpx" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

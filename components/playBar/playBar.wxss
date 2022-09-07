@@ -1,0 +1,8 @@
+.playbar .width .img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: chartreuse;
+  margin-right: 0.8em;
+  margin-top: -0.6em;
+}

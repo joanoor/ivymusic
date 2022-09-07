@@ -1,0 +1,6 @@
+.search {
+  /* border-bottom: solid 1px var(--main-bgcolor) */
+  padding: 1em;
+}
+
+.search-placeholder {}

@@ -1,0 +1,11 @@
+<wxs src='./overlay.wxs' module='transModule'></wxs>
+<view class="custom-class" data-type="overlay" data-center="{{center}}" data-screenheight="{{screenHeight}}"
+  wx:if="{{show}}" bindtap="{{transModule.closeOverlay}}">
+  <view catchtap="onCatchTap" data-center="{{center}}" data-screenheight="{{screenHeight}}"
+    data-aniwrapperheight="{{aniwrapperHeight}}" data-mintransy="{{initMinTransY}}"
+    bindtouchstart="{{transModule.touchStart}}" catchtouchend="{{transModule.touchEnd}}"
+    catchtouchmove="{{transModule.touchMove}}" class="ani-wrapper relative border-box"
+    style="height:{{aniwrapperHeight}}px;transform: translateX({{initTransX}}) translateY({{initMaxTransY}}px);">
+    <slot></slot>
+  </view>
+</view>

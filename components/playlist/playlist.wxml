@@ -1,0 +1,7 @@
+<view class="playlist flex align-items-center justify-content-between border-box">
+  <view class="flex playlist-item">
+    <view class="playlist-title">{{item.title}}</view>
+    <view class="playlist-author">{{" - "+item.author}}</view>
+  </view>
+  <van-icon name="cross" />
+</view>

@@ -1,0 +1,8 @@
+<scroll-view scroll-x class="kscroll border-box custom-class" style="width:{{width}};height:{{height}}">
+  <view wx:for="{{lists}}" wx:key="*this" class="scroll-view-block" style="margin-right:{{mr}}">
+    <view class="w-full h-full">
+      <view class="block-img"></view>
+      <view class="block-title center" wx:if="item.title">{{item.title}}</view>
+    </view>
+  </view>
+</scroll-view>

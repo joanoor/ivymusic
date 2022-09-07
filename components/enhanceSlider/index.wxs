@@ -1,0 +1,38 @@
+var drag = null
+var touchStartX = 0
+var touchMoveX = 0
+var startX = 0
+var width = 0
+
+var dragStart = function (e, instance) {
+  drag = instance.selectComponent('.enhance-slider-inner')
+  console.log('+++++', JSON.stringify(e.instance))
+  startX = e.instance.getDataset().startx
+  width = e.instance.getDataset().width
+  touchStartX = e.touches[0].pageX
+  console.log('------>', touchStartX, startX)
+  drag.setStyle({
+    'width': (touchStartX - startX) + 'px'
+  })
+}
+
+var dragging = function (e, instance) {
+  touchMoveX = e.touches[0].pageX
+  drag.setStyle({
+    'width': (touchMoveX - startX) + 'px'
+  })
+  instance.callMethod('setBrightness', (touchMoveX - startX) / width)
+}
+
+var dragEnd = function (e, instance) {
+  // touchMoveX = e.touches[0].pageX
+  // drag.setStyle({
+  //   'width': (touchMoveX - startX) + 'px'
+  // })
+}
+
+module.exports = {
+  dragStart: dragStart,
+  dragging: dragging,
+  dragEnd: dragEnd,
+}

@@ -1,0 +1,7 @@
+.kscroll {
+  white-space: nowrap;
+}
+
+.scroll-view-block {
+  display: inline-block;
+}

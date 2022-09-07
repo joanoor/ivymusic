@@ -1,0 +1,62 @@
+/**app.wxss**/
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+@import '/assets/styles/variable.wxss';
+@import '/assets/styles/yyds.wxss';
+@import '/assets/styles/animate.wxss';
+@import '/assets/iconfont/laura.wxss';
+
+page {
+  /* 修改vant-weapp的主题颜色 */
+  --nav-bar-background-color: var(--main-color);
+  --tabbar-item-active-color: var(--main-color);
+  --nav-bar-title-text-color: var(--main-color-light);
+  --search-padding: 20rpx 32rpx 32rpx 32rpx;
+  --tag-text-color: red;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  color: transparent !important;
+  display: none !important;
+}
+
+.wm {
+  width: calc(100% - 60rpx);
+  margin: 0 auto;
+}
+
+.br {
+  border-radius: 0.8em;
+}
+
+.color {
+  color: var(--main-color-light);
+}
+
+.bgcolor {
+  background: var(--main-color-light)
+}
+
+.mb {
+  margin-bottom: 1em;
+}
+
+.weak-line {
+  position: relative;
+}
+
+.weak-line::after {
+  content: " ";
+  position: absolute;
+  bottom: -16rpx;
+  right: 0;
+  height: 1px;
+  border-top: solid 1px var(--main-bgcolor);
+  /* color: #d9d9d9; */
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.3);
+  transform: scaleY(0.3);
+  left: 0;
+}

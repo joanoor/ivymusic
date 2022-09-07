@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "k-scroll": "/components/kales/kscroll/k-scroll"
+  }
+}

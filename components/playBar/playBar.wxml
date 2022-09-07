@@ -1,0 +1,18 @@
+<view data-type="playnow" class="custom-class playbar w-full" style="height:{{playbarHeight}}px;"
+  bindtap="showPlayOverlay">
+  <view class="wm w-full h-full relative flex justify-content-between">
+    <view class="flex align-items-center" style="width:80%">
+      <view class="img">
+
+      </view>
+      <view class="song-info">Relax</view>
+
+    </view>
+    <view class="flex align-items-center justify-content-between" style="width:18%">
+      <van-icon catchtap="control" name="play-circle-o" />
+      <van-icon data-type="playlist" catchtap="showPlayOverlay" class-prefix="iconfont" name="play_list" size="40rpx">
+      </van-icon>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,118 @@
+var rpx2px = function (rpx, screenwidth) {
+  return rpx / 750 * screenwidth
+}
+
+/**下面是个人中心操作 */
+var touchMoveY = 0
+var touchStartY = 0
+var isScrollTop = true  // scroll-view是否
+var zeropx = 0  // 临界值
+var screenWidth = 0
+var leftIconInstance = null
+var rightIconInstance = null
+var initPersonalPicHeight = 0
+var navbarHeight = 0
+
+var clickNavLefticon = function (e, instance) {
+  console.log('点击toggle')
+  var type = e.instance.getDataset().type
+  if (type == 'right') {
+    rightIconInstance = e.instance
+    rightIconInstance.setStyle({
+      'transform': 'rotate(180deg)',
+      'transition-duration': '0.6s'
+    })
+    if (leftIconInstance) {
+      leftIconInstance.setStyle({
+        'transform': 'rotate(0deg)',
+        'transition-duration': '0.6s'
+      })
+    }
+  } else {
+    leftIconInstance = e.instance
+    leftIconInstance.setStyle({
+      'transform': 'rotate(180deg)',
+      'transition-duration': '0.6s'
+    })
+    if (rightIconInstance) {
+      rightIconInstance.setStyle({
+        'transform': 'rotate(0deg)',
+        'transition-duration': '0.6s'
+      })
+    }
+
+  }
+  instance.callMethod('toggleHomePage', type)
+}
+
+
+var dragStart = function (e, instance) {
+
+  initPersonalPicHeight = e.instance.getDataset().initpersonalpicheight
+  navbarHeight = e.instance.getDataset().navbarheight
+  isScrollTop = e.instance.getDataset().isscrolltop
+  screenWidth = e.instance.getDataset().screenwidth
+  zeropx = rpx2px(initPersonalPicHeight, screenWidth) + navbarHeight
+
+  if (isScrollTop) {
+    touchStartY = e.touches[0].pageY
+  }
+}
+var dragging = function (e, instance) {
+  isScrollTop = e.instance.getDataset().isscrolltop
+  var personalBackPic = instance.selectComponent('.holder-pic')
+  var personalBlock = instance.selectComponent('.personal-container')
+
+  if (isScrollTop) {
+    touchMoveY = e.touches[0].pageY
+    if (touchMoveY - touchStartY > 0) {
+      if (touchMoveY - touchStartY < zeropx) {
+        var rate = (touchMoveY - touchStartY) / zeropx + 1
+        personalBackPic.setStyle({
+          'transform': 'scale(' + rate + ')',
+        })
+        var size = personalBackPic.getBoundingClientRect().height - zeropx
+        personalBlock.setStyle({
+          'transform': 'translate(0, ' + size / 2 + 'px)'
+        })
+      }
+    }
+  }
+}
+var dragEnd = function (e, instance) {
+  console.log('dragEnd')
+  isScrollTop = e.instance.getDataset().isscrolltop
+  var personalBackPic = instance.selectComponent('.holder-pic')
+  var personalBlock = instance.selectComponent('.personal-container')
+  if (isScrollTop) {
+    if (touchMoveY - touchStartY > 0) {
+      personalBackPic.setStyle({
+        'transform': 'scale(1)',
+        'transition-duration': '0.6s'
+      })
+      personalBlock.setStyle({
+        'transform': 'translate(0, 0)',
+        'transition-duration': '0.6s'
+      })
+    }
+  }
+}
+
+
+var scrollPersonal = function (e, instance) {
+  e.instance.getDataset().initpersonalpicheight
+  e.instance.getDataset().navbarheight
+  var scrollTopTtmp = e.detail.scrollTop
+  zeropx = rpx2px(initPersonalPicHeight, screenWidth)
+  if (scrollTopTtmp <= zeropx) {
+    instance.callMethod('scrollPersonal', e)
+  }
+}
+
+module.exports = {
+  clickNavLefticon: clickNavLefticon,
+  dragStart: dragStart,
+  dragging: dragging,
+  dragEnd: dragEnd,
+  scrollPersonal: scrollPersonal
+}

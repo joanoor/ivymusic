@@ -1,0 +1,99 @@
+/** 下面的内容是：弹出框跟手操作 */
+var touchStartY = 0 // 触摸时的原点 
+var touchMoveY = 0  // y轴方向移动的距离
+var owner = null  // 页面实例
+var screenHeight = 0
+var aniwrapperHeight = 0
+var minTransY = 0  // 从屏幕顶部计算aniwrapper实际translateY的距离
+var moveY = 0 // 触摸过程中，Y变化
+var moveX = 0
+var median = 0  // 中间值，低于它将返回之前状态
+
+var setMoveX = function (flag) {
+  if (flag) {
+    moveX = '-50%'
+  } else {
+    moveX = 0
+  }
+}
+
+// 触摸开始
+var touchStart = function (e, instance) {
+  touchStartY = e.touches[0].pageY
+  screenHeight = e.instance.getDataset().screenheight
+  aniwrapperHeight = e.instance.getDataset().aniwrapperheight
+  setMoveX(e.instance.getDataset().center)
+  minTransY = e.instance.getDataset().mintransy
+  median = aniwrapperHeight / 7 * 2
+  owner = instance.selectComponent('.ani-wrapper')
+}
+
+
+
+// 触摸移动
+var touchMove = function (e, instance) {
+  touchMoveY = e.touches[0].pageY;
+  moveY = touchMoveY - touchStartY
+
+  if (moveY > 0) {
+    owner.setStyle({
+      'transform': 'translate(' + moveX + ', ' + (minTransY + moveY) + 'px)'
+    })
+  }
+}
+// 触摸结束
+var touchEnd = function (e, instance) {
+  moveY = touchMoveY - touchStartY
+  if (moveY > 0) {
+    if (moveY < median) {
+      owner.setStyle({
+        'transform': 'translate(' + moveX + ', ' + minTransY + 'px)',
+        'transition-duration': '0.18s'
+      })
+      clearTouchStatus()
+    } else {
+      owner.setStyle({
+        'transform': 'translate(' + moveX + ', ' + screenHeight + 'px)',
+        'transition-duration': '0.18s'
+      })
+      commonAction(owner, instance)
+    }
+  }
+}
+// 关闭弹出窗
+var closeOverlay = function (e, instance) {
+  owner = instance.selectComponent('.ani-wrapper')
+  screenHeight = e.instance.getDataset().screenheight
+  setMoveX(e.instance.getDataset().center)
+  owner.setStyle({
+    'transform': 'translate(' + moveX + ', ' + screenHeight + 'px)',
+    'transition-duration': '0.18s'
+  })
+  commonAction(owner, instance)
+}
+
+var commonAction = function (owner, instance) {
+  owner.setTimeout(function () {
+    instance.callMethod('onOverlayClick')
+    clearTouchStatus()
+  }, 180)
+}
+
+var clearTouchStatus = function () {
+  touchStartY = 0;  //触摸时的原点 
+  touchMoveY = 0;   // y轴方向移动的距离
+  owner = null      // 页面实例
+  screenHeight = 0
+  aniwrapperHeight = 0
+  minTransY = 0
+  moveY = 0
+  median = 0
+}
+
+
+module.exports = {
+  touchStart: touchStart,
+  touchMove: touchMove,
+  touchEnd: touchEnd,
+  closeOverlay: closeOverlay,
+}

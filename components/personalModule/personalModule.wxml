@@ -1,0 +1,7 @@
+<view class="personal-block">
+  <view class="personal-block-title">
+  </view>
+  <view class="personal-block-content">
+    <view class="personal-block-item"></view>
+  </view>
+</view>

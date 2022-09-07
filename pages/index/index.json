@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "playList": "/components/playlist/playlist",
+    "k-swiper": "/components/kales/k-swiper/k-swiper",
+    "k-scroll": "/components/kales/kscroll/k-scroll",
+    "k-card": "/components/kales/kcard/k-card",
+    "scrollRefresh": "/components/scrollRefresh/scrollRefresh",
+    "overlay": "/components/overlay/overlay",
+    "playBar": "/components/playBar/playBar",
+    "colorPicker": "/components/colorPicker/colorPicker",
+    "enhanceSlider": "/components/enhanceSlider/enhanceSlider"
+  }
+}

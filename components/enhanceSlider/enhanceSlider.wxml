@@ -1,0 +1,11 @@
+<wxs src='./index.wxs' module='drag'></wxs>
+<view data-startx="{{startX}}" data-width="{{width}}" catchtouchstart="{{drag.dragStart}}"
+  catchtouchmove="{{drag.dragging}}" catchtouchend="{{drag.dragEnd}}" class="custom-class enhance-slider relative">
+  <view class="enhance-slider-inner w-full"></view>
+  <view class="sunline absolute">
+    <van-icon class-prefix="iconfont" name="sun_line"></van-icon>
+  </view>
+  <view class="sunfill absolute">
+    <van-icon class-prefix="iconfont" name="sun_fill"></van-icon>
+  </view>
+</view>

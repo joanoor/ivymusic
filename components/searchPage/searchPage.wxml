@@ -1,0 +1,2 @@
+<input type="text" class="custom-class search wm weak-line border-box" placeholder="{{searchholdertext}}"
+  placeholder-class="search-placeholder" />

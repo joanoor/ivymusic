@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "searchPage": "/components/searchPage/searchPage",
+    "playBar": "/components/playBar/playBar"
+  }
+}
